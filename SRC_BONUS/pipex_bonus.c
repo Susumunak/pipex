@@ -28,14 +28,14 @@ void	pipex(int *fd_io, char **av, char **env, int cmdn)
 			exit(EXIT_FAILURE);
 		if (!uts.id)
 			ft_child(fd_io, uts, av, env);
-		wait(&status);
-		ft_exitstatus(status, uts.i, cmdn);
 		close(uts.pip[1]);
 		if (uts.i == 2)
 			close(fd_io[0]);
 		fd_io[0] = uts.pip[0];
 		(uts.i)++;
 	}
+	waitpid(uts.id,&status,0);
+	ft_exitstatus(satus, uts.i, cmdn);
 }
 
 void	ft_child(int *fd_io, t_pipexu uts, char **av, char **env)
